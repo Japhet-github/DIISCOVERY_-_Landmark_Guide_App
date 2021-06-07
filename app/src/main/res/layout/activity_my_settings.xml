@@ -139,9 +139,10 @@
             android:layout_gravity="center"
             android:layout_margin="10dp"
             android:backgroundTint="#3278FF"
+            android:onClick="UpdateInfo"
             android:text="@string/update_info"
-            android:textSize="20sp"
-            android:textColor="#FFFFFF" />
+            android:textColor="#FFFFFF"
+            android:textSize="20sp" />
 
         <!-- register here -->
         <Button
