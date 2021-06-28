@@ -14,4 +14,16 @@ public class UserAccount
         this.emailAddress = emailAddress;
     }
 
+    // getters
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public String getEmailAddress() {
+        return emailAddress;
+    }
 }

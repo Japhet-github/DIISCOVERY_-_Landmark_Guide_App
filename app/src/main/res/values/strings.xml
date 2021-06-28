@@ -1,4 +1,4 @@
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
     // mapbox
     <string name="mapbox_access_token">pk.eyJ1IjoiZGlpc2NvdmVyeSIsImEiOiJja3BtOTB2MjMwZGFtMndtdXRsOXl3eGY0In0.RdDGzJMFLrbmbMNCVOryRw</string>
 
@@ -22,10 +22,12 @@
     <string name="reset_password">Reset Password</string>
     <string name="back_to_login">Back to Login</string>
 
-    <string name="settings">Settings</string>
+    <string name="update_user_info">Update User Info</string>
 
     <string name="update_info">Update</string>
-    <string name="sign_out">Sign Out</string>
+    <string name="sign_out">Sign out</string>
+    <string name="ExtendedFabMenu_actions">Menu</string>
+    <string name="myProfile">Edit Profile</string>
 
     <!-- Preference Titles -->
 

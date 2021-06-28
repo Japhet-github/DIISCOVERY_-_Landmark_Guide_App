@@ -68,6 +68,7 @@ public class Register_Activity extends AppCompatActivity
             et_userEmail.requestFocus();
             return;
         }
+
         // wrong email format
         if(!Patterns.EMAIL_ADDRESS.matcher(email).matches()){
             et_userEmail.setError("Please enter a valid email address.");

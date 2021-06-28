@@ -9,6 +9,7 @@ import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -38,28 +39,42 @@ public class Login_Activity extends AppCompatActivity
             startActivity(myIntent);
         });
 
+        SharedPreferences preferences = getSharedPreferences("checkbox", MODE_PRIVATE);
+        String checkbox = preferences.getString("remember","");
+
+        if(checkbox.equals("true")) {
+            Intent intent = new Intent(Login_Activity.this, Mapbox_Activity.class);
+            startActivity(intent);
+        } else if(checkbox.equals("false")) {
+            Toast.makeText(this, "Please Login!", Toast.LENGTH_SHORT).show();
+        }
+
+        // login button
         Button login = findViewById(R.id.btn_Login);
         login.setOnClickListener(v -> LoginUser());
 
+        // email and password credentials
         et_email = findViewById(R.id.editText_EmailAddress);
         et_password = findViewById(R.id.editText_Password);
 
         // remember me feature
         cb_rememberMe = findViewById(R.id.checkBox_RememberMe);
-        cb_rememberMe.setOnCheckedChangeListener((compoundButton, b) -> {
-            if(compoundButton.isChecked()){
-                SharedPreferences preferences = getSharedPreferences("checkbox", MODE_PRIVATE);
-                SharedPreferences.Editor editor = preferences.edit();
-                editor.putString("remember", "true");
-                editor.apply();
-                Toast.makeText(Login_Activity.this, "Checked!", Toast.LENGTH_SHORT).show();
-
-            }else if(!compoundButton.isChecked()){
-                SharedPreferences preferences = getSharedPreferences("checkbox", MODE_PRIVATE);
-                SharedPreferences.Editor editor = preferences.edit();
-                editor.putString("remember", "false");
-                editor.apply();
-                Toast.makeText(Login_Activity.this, "Unchecked!", Toast.LENGTH_SHORT).show();
+        cb_rememberMe.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if(buttonView.isChecked()) {
+                    SharedPreferences preferences = getSharedPreferences("checkbox", MODE_PRIVATE);
+                    SharedPreferences.Editor editor = preferences.edit();
+                    editor.putString("remember", "true");
+                    editor.apply();
+                    Toast.makeText(Login_Activity.this, "Checked!", Toast.LENGTH_SHORT).show();
+                } else if (!buttonView.isChecked()) {
+                    SharedPreferences preferences = getSharedPreferences("checkbox", MODE_PRIVATE);
+                    SharedPreferences.Editor editor = preferences.edit();
+                    editor.putString("remember", "false");
+                    editor.apply();
+                    Toast.makeText(Login_Activity.this, "Unchecked!", Toast.LENGTH_SHORT).show();
+                }
             }
         });
 
@@ -79,7 +94,8 @@ public class Login_Activity extends AppCompatActivity
 
     // switch statement is not the best option here
     // because of the error
-    // Resource IDs will be non-final in Android Gradle Plugin version 7.0, avoid using them in switch case statements
+    // Resource IDs will be non-final in Android Gradle Plugin version 7.0,
+    // avoid using them in switch case statements
 
     @Override
     public void onClick(View v) {
